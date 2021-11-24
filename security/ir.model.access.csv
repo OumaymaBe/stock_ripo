@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_article_gestion__inventaire,access.article.gestion__inventaire,model_article_gestion__inventaire,,1,1,1,1

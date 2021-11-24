@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="article_graph" model="ir.ui.view">
+        <field name="name">article.gestion__inventaire.view.graph</field>
+        <field name="model">article.gestion__inventaire</field>
+        <field name="arch" type="xml">
+            <graph string="Article graph" type="bar">
+                <field name="name" placeholder="référence"/>
+                <field name="poids_net"/>
+            </graph>
+        </field>
+    </record>
+  <record id="view_article_form" model="ir.ui.view">
+      <field name="name">view.article.gestion__inventaire.form</field>
+      <field name="model">article.gestion__inventaire</field>
+      <field name="arch" type="xml">
+        <form string="article">
+          <sheet>
+            <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+            <div class="oe_title">
+                <label class="oe_edit_only" for="name" string=""/>
+                <h1><field name="name" placeholder="référence"/></h1>
+                <!-- <field name="name"/> --> 
+            </div>
+            <notebook>
+                <page string="General Information" name="general_information">
+                    <group>
+                        <group>
+                            <field name="des"/>
+                            <field name="nature"/>
+                        </group>
+                        <group>
+                            
+                                <field name="nbr_colis"/>
+                                <field name="poids_brut"/>
+                                <field name="poids_net"/>
+                                <!-- <field name="description"/> -->
+                            
+                        </group>
+                        <group string="Internal Notes">
+                            <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+  </record> 
+  <record id="sequence_article" model="ir.sequence">
+      <field name="name">Article Sequence</field>
+      <field name="code">article.gestion__inventaire.sequence</field>
+      <field name="active">TRUE</field>
+      <field name="prefix">Art</field>
+      <field name="padding">5</field>
+      <!-- <field name="number_next">1</field>
+      <field name="number_increment">1</field> -->
+  </record>
+  <record model="ir.actions.act_window" id="action_article_view">
+      <field name="name">article</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">article.gestion__inventaire</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Cliquez ici pour créer un nouveau article.
+          </p>
+      </field>
+  </record>
+  <record id="view_article_tree" model="ir.ui.view">
+      <field name="name">view.article.tree</field>
+      <field name="model">article.gestion__inventaire</field>
+      <field name="arch" type="xml">
+          <tree string="article">
+            <field name="name"/>
+            <!-- <field name="des"/> -->
+            <field name="nature"/>
+            <field name="nbr_colis"/>
+            <field name="poids_brut"/>
+            <field name="poids_net"/>
+            <!-- <field name="description"/> -->
+          </tree>
+      </field>
+  </record>
+  <menuitem id="menu_list_article_view" name="Article" parent="article_menu_article" action="action_article_view" sequence="0"/> 
+</odoo>

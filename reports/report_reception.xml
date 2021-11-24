@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="print_reception">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-if="o.state == 'draft' or o.state =='refus'">
+                        <div class="page">
+                            <div style="text-align:center;">
+                            <h1 style="margin-bottom:80">Bon d'entrer</h1>
+                            </div>
+                            <table class="table table-condensed mt70">
+                                <thead>
+                                    <tr>
+                                        <th style="font-size:20px;background-color:#f0f0f5;"><strong>Référence</strong></th>
+                                         <td style="font-size:20px;background-color:#f0f0f5;">
+                                            <span t-field="o.name"/>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Responsable</strong></th>
+                                        <td style="font-size:20px">
+                                            <span t-field="o.responsable"/>
+                                        </td>
+                                    </tr>
+                                   
+                                     <tr>
+                                        <th style="font-size:20px;background-color:#f0f0f5;"><strong>Quantite demander  </strong></th>
+                                        <td  style="font-size:20px;background-color:#f0f0f5;">
+                                            <span t-field="o.quantite_demander"/>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Date prevue :</strong></th>
+                                        <td  style="font-size:20px">
+                                            <span t-field="o.date_prevue"/>
+                                        </td>
+                                    </tr>
+                                    
+                                     <tr>
+                                        <th style="font-size:20px;background-color:#f0f0f5;"><strong>Fournisseur :</strong></th>
+                                        <td  style="font-size:20px;background-color:#f0f0f5;">
+                                            <span t-field="o.fournisseur"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Article : </strong></th>
+                                        <td  style="font-size:20px">
+                                            <span t-field="o.article"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Emplacement : </strong></th>
+                                        <td  style="font-size:20px">
+                                            <span t-field="o.emplacement"/>
+                                        </td>
+                                    </tr>
+                                    
+                            </table>
+                             
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="page">
+                            <div style="text-align:center;">
+                            <h1 style="margin-bottom:80">Bon de reception</h1>
+                            </div>
+                            <table class="table table-condensed mt70">
+                                <thead>
+                                    <tr>
+                                        <th style="font-size:20px;background-color:#f0f0f5;"><strong>Référence</strong></th>
+                                         <td style="font-size:20px;background-color:#f0f0f5;">
+                                            <span t-field="o.name"/>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Responsable</strong></th>
+                                        <td style="font-size:20px">
+                                            <span t-field="o.responsable"/>
+                                        </td>
+                                    </tr>
+                                   
+                                     <tr>
+                                        <th style="font-size:20px;background-color:#f0f0f5;"><strong>Quantite demander  </strong></th>
+                                        <td  style="font-size:20px;background-color:#f0f0f5;">
+                                            <span t-field="o.quantite_demander"/>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Date prevue :</strong></th>
+                                        <td  style="font-size:20px">
+                                            <span t-field="o.date_prevue"/>
+                                        </td>
+                                    </tr>
+                                    
+                                     <tr>
+                                        <th style="font-size:20px;background-color:#f0f0f5;"><strong>Fournisseur :</strong></th>
+                                        <td  style="font-size:20px;background-color:#f0f0f5;">
+                                            <span t-field="o.fournisseur"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Article : </strong></th>
+                                        <td  style="font-size:20px">
+                                            <span t-field="o.article"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Emplacement : </strong></th>
+                                        <td  style="font-size:20px">
+                                            <span t-field="o.emplacement"/>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th style="font-size:20px"><strong>Quantité final : </strong></th>
+                                        <td  style="font-size:20px">
+                                            <span t-field="o.qtefinal"/>
+                                        </td>
+                                    </tr>
+                            </table>
+                             
+                        </div>
+                    </t>
+                    </t>
+                </t>
+            </t>  
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_bn_entrer_form" model="ir.ui.view">
+      <field name="name">view.bn.entrer.form</field>
+      <field name="model">bn.entrer</field>
+      <field name="arch" type="xml">
+        <form string="Bon Entrer">
+          <sheet>
+            <div class="oe_title">
+                <!-- <label class="oe_edit_only" for="name" string="Product Name"/> -->
+                <h1><field name="name" placeholder="Numero"/></h1> 
+            </div>
+                        <group>
+                            <field name="date"/>
+                            <field name="num"/>
+                            <field name="article"/>
+                            <field name="total"/>
+                            <field name="total_br"/>
+                            
+                        </group>
+          </sheet>
+        </form>
+      </field>
+  </record> 
+  <record id="sequence_bn_entrer" model="ir.sequence">
+    <field name="name">Reception Sequence</field>
+    <field name="code">bn.entrer.sequence</field>
+    <field name="active">TRUE</field>
+    <field name="prefix">BE N° : </field>
+    <field name="padding">5</field>
+    <!-- <field name="number_next">1</field>
+    <field name="number_increment">1</field> -->
+  </record>
+ 
+  <record model="ir.actions.act_window" id="action_bn_entrer_view">
+      <field name="name">bonEntrer</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">bn.entrer</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Cliquez ici pour créer un nouveau bonEntrer.
+          </p>
+      </field>
+  </record>
+  <record id="view_bn_entrer_tree" model="ir.ui.view">
+      <field name="name">view.bn.entrer.tree</field>
+      <field name="model">bn.entrer</field>
+      <field name="arch" type="xml">
+          <tree string="bonEntrer">
+                <field name="name"/>
+                <field name="date"/>
+                <!-- <field name="article"/> -->
+          </tree>
+      </field>
+  </record>
+  <menuitem id="menu_list_bn_entrer_view" name="Bon de Entrer" parent="inventaire_menu_inventaire" action="action_bn_entrer_view" sequence="2"/> 
+</odoo>

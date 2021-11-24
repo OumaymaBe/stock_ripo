@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_reception_form" model="ir.ui.view">
+      <field name="name">view.reception.gestion__inventaire.form</field>
+      <field name="model">reception.gestion__inventaire</field>
+      <field name="arch" type="xml">
+        <form string="reception">
+          <header>
+            <button string="valider" name="creat_bn"  type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', [ 'refus','inprogress'])]}"/>
+            <!-- <button string="Reception" name="action_star" states="draft" type="object" class="oe_highlight"/> -->
+            <!-- <button string="Entrer" states="inprogress" name="action_trem" type="object" class="oe_highlight"/> -->
+            <button string="Rejeter" states="inprogress" name="action_anuuler" type="object" attrs="{'invisible': [('state', 'not in', [ 'draft'])]}"/>
+            <!-- <button string="Rejeter" name="action_broui" type="object" attrs="{'invisible': [('state', 'not in', [ 'draft'])]}"/> -->
+            <field name="state" widget="statusbar" statusbar_visible="draft,inprogress,done,refus"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+                <!-- <label class="oe_edit_only" for="name" string="Product Name"/> -->
+                <h1><field name="name" placeholder="Numero"/></h1> 
+            </div>
+            <notebook>
+                <page string="General Information" name="general_information">
+                    <group>
+                        <group>
+                            <field name="origine"/>
+                            <field name="fournisseur"/>
+                            <field name="matricule"/>
+                            <field name="chauffeur"/>
+                      
+                        </group>
+                        <group>
+                            <field name="cin"/>
+                            <field name="date"/>
+                            <field name="acheteur"/>
+                            <field name="beneficiaire"/>
+                            <field name="etat_art"/>
+                            <field name="date_marree"/>
+                            
+                        </group>
+                    </group>
+                    <group>
+                        <field name="observation"/>
+                    </group>
+                </page>
+                <page string="Article" name="article">
+                    <group>
+                        <field name="article"/>
+                        <field name="total"/>
+                        
+                    </group>
+                </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+  </record> 
+  <record id="sequence_reception" model="ir.sequence">
+    <field name="name">Reception Sequence</field>
+    <field name="code">reception.gestion__inventaire.sequence</field>
+    <field name="active">TRUE</field>
+    <field name="prefix">Br N° : </field>
+    <field name="padding">5</field>
+    <!-- <field name="number_next">1</field>
+    <field name="number_increment">1</field> -->
+  </record>
+ 
+  <record model="ir.actions.act_window" id="action_reception_view">
+      <field name="name">reception</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">reception.gestion__inventaire</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Cliquez ici pour créer un nouveau reception.
+          </p>
+      </field>
+  </record>
+  <record id="view_reception_tree" model="ir.ui.view">
+      <field name="name">view.reception.tree</field>
+      <field name="model">reception.gestion__inventaire</field>
+      <field name="arch" type="xml">
+          <tree string="Reception">
+               <field name="name"/>
+               <field name="origine"/>
+                <field name="fournisseur"/>
+                <field name="matricule"/>
+                <field name="chauffeur"/>
+                <field name="cin"/>
+                <field name="date"/>
+                <field name="acheteur"/>
+                <field name="beneficiaire"/>
+                <field name="etat_art"/>
+                <field name="date_marree"/>
+          </tree>
+      </field>
+  </record>
+  <menuitem id="menu_list_reception_view" name="Bon de Réception" parent="inventaire_menu_inventaire" action="action_reception_view" sequence="0"/> 
+</odoo>

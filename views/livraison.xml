@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_livraison_form" model="ir.ui.view">
+      <field name="name">view.livraison.gestion__inventaire.form</field>
+      <field name="model">livraison.gestion__inventaire</field>
+      <field name="arch" type="xml">
+        <form string="livraison">
+            <header>
+                <button string="Entrer" name="action_star" states="draft" type="object" class="oe_highlight"/>
+                <button string="Reception" states="inprogress" name="action_trem" type="object" class="oe_highlight"/>
+                <button string="Annuler" states="inprogress" name="action_anuuler" type="object"/>
+                <button string="Rétablir le brouillon" name="action_broui" type="object" attrs="{'invisible': [('state', 'not in', ['done', 'refus'])]}"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,inprogress,done,refus"/>
+              </header>
+          <sheet>
+            <div class="oe_title">
+                <label class="oe_edit_only" for="name" string="Product Name"/>
+                <h1><field name="name" placeholder="Product Name"/></h1> 
+            </div>
+            <notebook>
+                <page string="General Information" name="general_information">
+                    <group>
+                        <group>
+                            <field name="responsable"/>
+                            <field name="demande_initial"/>
+                            <field name="qteRecu" attrs="{'invisible': [('state', 'in', ['draft','refus'])]}"/>
+                        </group>
+                        <group>
+                            <field name="date_prevue"/>
+                            <field name="client"/>
+                            <field name="emplacement"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Article" name="article">
+                    <group>
+                        <field name="article"/>
+                    </group>
+                </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+  </record> 
+  <record model="ir.actions.act_window" id="action_livraison_view">
+      <field name="name">livraison</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">livraison.gestion__inventaire</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Cliquez ici pour créer un nouveau livraison.
+          </p>
+      </field>
+  </record>
+  <record id="view_livraison_tree" model="ir.ui.view">
+      <field name="name">view.livraison.tree</field>
+      <field name="model">livraison.gestion__inventaire</field>
+      <field name="arch" type="xml">
+          <tree string="livraison">
+            <field name="name"/>
+            <field name="responsable"/>
+            <field name="demande_initial"/>
+            <field name="article"/>
+            <field name="date_prevue"/>
+            <field name="client"/>
+          </tree>
+      </field>
+  </record>
+  <menuitem id="menu_list_livraison_view" name="Livraison" parent="inventaire_menu_inventaire" action="action_livraison_view" sequence="0"/> 
+</odoo>

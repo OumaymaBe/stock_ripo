@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report id="report_reception_imprimer" 
+    string="Imprimer Bon de reception"
+    model="reception.gestion__inventaire" 
+    report_type="qweb-pdf" 
+    name="gestion__inventaire.print_reception" 
+    file="gestion__inventaire.print_reception" 
+    attachment_use="True"/>
+    <report id="report_livraison_imprimer" 
+    string="Imprimer Bon de livraison"
+    model="livraison.gestion__inventaire" 
+    report_type="qweb-pdf" 
+    name="gestion__inventaire.print_livraison" 
+    file="gestion__inventaire.print_livraison" 
+    attachment_use="True"/>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- <record id="action_article" model="ir.ui.view">
+    <field name="name">view.article.gestion__inventaire.form</field>
+    <field name="model">article.gestion__inventaire</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="gestion__inventaire.article_graph"></field>
+</record> 
+<record id="dashboard_form_view" model="ir.ui.view">
+  <field name="name">Dashboard</field>
+  <field name="model">board.board</field>
+  <field name="type">form</field>
+  <field name="arch" type="xml">
+    <form string="Bon Entrer">
+      <board style="1-2">
+          <column>
+            <action string="article" name="%(gestion_inventaire.action_article)d"></action>
+          </column>
+      </board>
+    </form>
+  </field>
+</record> 
+<record model="ir.actions.act_window" id="article_dashboard">
+  <field name="name">Dash</field>
+  <field name="res_model">board.board</field>
+  <field name="view_mode">form</field>
+  <field name="usage">menu</field>
+  <field name="view_id" ref="dashboard_form_view" ></field>
+</record>
+<menuitem 
+            name="Dashboard"
+            id="menu_dashboard"
+            parent="gestion__inventaire.article_root"
+            action="article_dashboard"
+            sequence="5"
+            /> -->
+
+</odoo>
