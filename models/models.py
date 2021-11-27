@@ -3,9 +3,23 @@
 from odoo import models, fields, api
 
 
-class mouvement_stock(models.Model):
-    _name = 'mouvement.gestion__inventaire'
-    _description = 'Mouvement'
+class inventaire(models.Model):
+    _name = 'inventaire.gestion__inventaire'
+    _description = 'inventaire'
 
-    reception_id = fields.Many2one('reception.gestion__inventaire', string='Reception' )
-    entrer= fields.Many2one('bn.entrer.gestion__inventaire', string='Livraison')
+
+    quantite= fields.Float(string='Quantite', default=0)
+    id_article = fields.Char(string='Article' )
+    emplacement = fields.Char(string='Emplacement')
+    # id_article = fields.One2many(
+    #     'article.gestion__inventaire', string="Article")
+    
+    # count = fields.Integer(string='Count')
+
+    # @api.depends('id_article')
+    # def count_article(self):
+    #     for rec in self:
+    #         # counte=0
+    #         for art in rec.id_article:
+    #             if rec.id_article == art:
+    #                 rec.count = len(rec.id_article)

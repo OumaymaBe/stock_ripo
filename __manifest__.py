@@ -25,21 +25,22 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        # 'views/views.xml',
         'views/templates.xml',
         'views/menu.xml',
+        'wizards/bon_entrer.xml',
+
         'views/reception.xml',
         'views/livraison.xml',
         'views/article.xml',
+        # 'views/inventaire.xml',
 
         # 'views/categorie.xml',
-        # 'wizards/bon_entrer.xml',
         
         # 'views/kanban.xml',
         'reports/report.xml',
         'reports/report_reception.xml',
         'reports/report_livraison.xml',
-        'views/bonEntrer.xml'
+        # 'views/bonEntrer.xml'
 
         # 'views/inherit_client.xml',
 

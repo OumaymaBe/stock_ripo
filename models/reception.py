@@ -14,18 +14,23 @@ class reception(models.Model):
                        index=True,
                        default='New')
     origine = fields.Char(string='Origine   ',required=True)
-    fournisseur = fields.Char(string='Fournisseur   ')
+    fournisseur = fields.Many2one(
+        'res.partner', 'Fournisseur',
+        ondelete='cascade', required=True)
     matricule = fields.Char(string='Matricule véhicule   ',required=True)
     chauffeur = fields.Char(string='Nom du chauffeur   ',required=True)
     cin = fields.Char(string='N° CIN   ',required=True)
-    date = fields.Date(string='Date', default=datetime.today())
-    acheteur = fields.Char(string='Acheteur   ',required=True)
+    date = fields.Date(string='Date', default=datetime.today(),readonly=True)
+    acheteur = fields.Many2one(
+        'res.partner', 'Acheteur',
+        ondelete='cascade', required=True)
     beneficiaire = fields.Char(string='Bénéficiaire   ',required=True)
     etat_art = fields.Char(string='Etat du produit   ',required=True)
-    date_marree = fields.Char(string='Date marrée   ',required=True)
+    date_marree = fields.Date(string='Date marrée   ',required=True)
     article = fields.Many2many('article.gestion__inventaire', string='Article')
     observation =fields.Html(string='Observation   ')
-    
+    # article = fields.Many2one('article.gestion__inventaire', string='Article')
+
     # responsable = fields.Char(string='Responsable   ',required=True)
     # quantite_demander = fields.Char(string='Quantité demander   ')
     # date_prevue = fields.Date(string='Date prévue   ')
@@ -44,6 +49,9 @@ class reception(models.Model):
                             , string='state')
 
     total = fields.Float(string='Total' , compute="_compute_total")
+    # article_id = fields.One2many(
+    #     'article.gestion__inventaire', 'name', string="Article")
+    # count = fields.Integer(compute='count_article')
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
@@ -74,7 +82,9 @@ class reception(models.Model):
         }
         return self.env.ref('gestion__inventaire.print_reception').report_action(self, data=data) 
 
-                
+    # def default_get(self):
+    #     arts=[(11)]
+    #     self.write({"article":[(11,0,0,0,0,0,0,0,0,0,0,0,arts)]})         
     @api.depends('article')
     def _compute_total(self):
         for rec in self:
@@ -108,9 +118,8 @@ class reception(models.Model):
         # bon_rec =self.env['bn.entrer'].create(vals)
         # print ("Bon entrer",bon_rec.id)
     def creat_bn(self):
-        self.state = 'inprogress'
+        # self.state = 'inprogress'
         for rec in self:
-            
             vals ={
             'num' :rec.name,
             'date':rec.date,
@@ -128,3 +137,7 @@ class reception(models.Model):
             'target':'current',
             'res_id':bon_rec.id 
         }
+        
+    # @api.depends('article')
+    # def count_article(self):
+    #     return len(self.article)

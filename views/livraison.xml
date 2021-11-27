@@ -6,12 +6,14 @@
       <field name="arch" type="xml">
         <form string="livraison">
             <header>
+                
+                <button string="ajouter" name="add_art"  type="object" class="oe_highlight"/>
                 <button string="Entrer" name="action_star" states="draft" type="object" class="oe_highlight"/>
                 <button string="Reception" states="inprogress" name="action_trem" type="object" class="oe_highlight"/>
                 <button string="Annuler" states="inprogress" name="action_anuuler" type="object"/>
                 <button string="Rétablir le brouillon" name="action_broui" type="object" attrs="{'invisible': [('state', 'not in', ['done', 'refus'])]}"/>
                 <field name="state" widget="statusbar" statusbar_visible="draft,inprogress,done,refus"/>
-              </header>
+            </header>
           <sheet>
             <div class="oe_title">
                 <label class="oe_edit_only" for="name" string="Product Name"/>

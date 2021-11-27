@@ -6,9 +6,26 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
+                
                 <group>
-                    <field name="name"/>
-                    <!-- <field name="des"/>-->
+                    <label class="oe_edit_only" for="art" string="Confirmer Article"/>
+                    <field name="art"/>
+                        <!-- <tree >
+                            <field name="name" />
+                            <field name="nbr_colis"/>
+                            <field name="poids_brut"/>
+                            <field name="poids_net"/>
+                        </tree>
+                        <form> 
+                            <group>
+                                <group><field name="name" /></group>
+                                <group><field name="nbr_colis"/></group>
+                                <group><field name="poids_brut"/></group>
+                                <group><field name="poids_net"/></group>
+                            </group>
+                        </form> 
+                    </field> -->
+                    
                     <!-- <field name="art"/> 
                     <field name="nbr_colis"/>
                     <field name="poids_brut"/>
@@ -17,7 +34,7 @@
                 
                 <footer>
 
-                    <button string="Confirm" name="action_create_bon_entrer" type="object" class="oe_highlight"/>
+                    <button string="Confirm" name="default_get" type="object" class="oe_highlight"/>
                     <!-- <button string="view" name="action_view_bon_entrer" type="object" class="oe_highlight"/> -->
                     <button string="Cancel" class="btn btn-default" special="cancel"/>
                 </footer>

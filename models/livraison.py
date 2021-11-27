@@ -40,6 +40,18 @@ class livraison(models.Model):
     def action_anuuler(self):
         for rec in self:
             rec.state = 'refus'
+    @api.depends('article')
+    def add_art(self):
+        for rec in self:
+            for art in rec.article:
+                # self.write({art.poids_net:(6, 0, [1,2])}) 
+                art.poids_net = (6, 0, [1,2])
+            # rec.article=[(1 ,atrs ,{} )]
+        # self.write({"article":[(5 ,4 ,5 )]})        
+
+    # def default_get(self):
+    #     arts=[(11)]
+    #     self.write({"article":[(11,0,0,0,0,0,0,0,0,0,0,0,arts)]})        
 
     def print_livraison(self):
             livraisons = self.env['livraison.gestion__inventaire'].search_read([])

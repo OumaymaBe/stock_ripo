@@ -16,6 +16,10 @@
       <field name="arch" type="xml">
         <form string="article">
           <sheet>
+            <header>
+                <button string="Update Quantity" type="object"
+                    name="action_update_quantity"/>
+            </header>
             <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
             <div class="oe_title">
                 <label class="oe_edit_only" for="name" string=""/>
@@ -30,11 +34,11 @@
                             <field name="nature"/>
                         </group>
                         <group>
-                            
+                                <field name="responsible_id" widget="many2one_avatar_user"/>
                                 <field name="nbr_colis"/>
                                 <field name="poids_brut"/>
                                 <field name="poids_net"/>
-                                <!-- <field name="description"/> -->
+                                <field name="qte"/>
                             
                         </group>
                         <group string="Internal Notes">
@@ -78,7 +82,7 @@
             <field name="nbr_colis"/>
             <field name="poids_brut"/>
             <field name="poids_net"/>
-            <!-- <field name="description"/> -->
+            <field name="qte"/>
           </tree>
       </field>
   </record>
