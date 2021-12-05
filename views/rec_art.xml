@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_reception_art_form" model="ir.ui.view">
+      <field name="name">view.reception.article.form</field>
+      <field name="model">reception.article</field>
+      <field name="arch" type="xml">
+        <form string="Quantité">
+        
+          <sheet>
+                <group>
+                    <field name="article"/>
+                    <field name="nbr_colis"/>
+                    <field name="poids_brut"/>
+                    <field name="poids_net"/>
+                </group>
+          </sheet>
+        </form>
+      </field>
+  </record> 
+  
+ 
+  <record model="ir.actions.act_window" id="action_reception_art_view">
+      <field name="name">Quantité</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">reception.article</field>
+      <field name="view_mode">form</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Cliquez ici pour créer un nouveau reception.
+          </p>
+      </field>
+  </record>
+  <record id="view_reception_art_tree" model="ir.ui.view">
+      <field name="name">view.reception.tree</field>
+      <field name="model">reception.article</field>
+      <field name="arch" type="xml">
+          <tree string="Quantité">
+                <field name="article"/>
+                <field name="nbr_colis"/>
+                <field name="poids_brut"/>
+                <field name="poids_net"/>
+          </tree>
+      </field>
+  </record>
+  <!-- <menuitem id="menu_list_rec_article_view" name="Quantité Article" parent="article_menu_article" action="action_reception_art_view" sequence="0"/>  -->
+
+  <!-- <menuitem id="menu_list_reception_view" name="Réception" parent="inventaire_menu_inventaire" action="action_reception_art_view" sequence="0"/>  -->
+</odoo>

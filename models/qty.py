@@ -8,7 +8,7 @@ class inventaire(models.Model):
     _description = 'inventaire'
 
 
-    quantite= fields.Float(string='Quantite', default=0)
+    quantite= fields.Float(string='Quantite')
     id_article = fields.Char(string='Article' )
     emplacement = fields.Char(string='Emplacement')
     # id_article = fields.One2many(

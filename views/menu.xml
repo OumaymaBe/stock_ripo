@@ -4,7 +4,6 @@
         <menuitem name="Gestion inventaire" id="menu_inventaire"/>
         <menuitem name="Dashboard" id="Dashboard" parent="menu_inventaire" sequence="0"/> 
         <menuitem name="Article" id="article_menu_article" parent="menu_inventaire" sequence="2"/> 
-
         <menuitem name="Opérations" id="inventaire_menu_inventaire" parent="menu_inventaire" sequence="1"/> 
     </data>
 </odoo>

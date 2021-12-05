@@ -13,9 +13,6 @@ class article(models.Model):
                        index=True,
                        default='New')
     des = fields.Char(string="Désignation    ")
-    nbr_colis = fields.Float(string="Nombre colis    ")
-    poids_brut = fields.Float(string="Poids brut/kg    ")
-    poids_net = fields.Float(string="Poids net/kg    ")
     nature = fields.Selection([('1', 'plastique'),
                             ('2', 'carton'),
                             ('3', 'bois'),
@@ -31,9 +28,10 @@ class article(models.Model):
     description = fields.Text(string="Description    ")
     responsible_id = fields.Many2one(
         'res.users', string='Responsable', default=lambda self: self.env.uid, company_dependent=True, check_company=True)
-    qte=fields.Float(string='Quantité')
-    quantite = fields.Many2many('inventaire.gestion__inventaire', string='qty')
-  
+    
+    # qti = fields.Many2one('inventaire.gestion__inventaire', string='qty')
+    # qte=fields.Float(string='Quantité')       
+
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
@@ -42,28 +40,35 @@ class article(models.Model):
         result = super(article, self).create(vals)
         return result
      
-    def action_update_quantity(self):
-        for rec in self:
-           
-            vals ={
-            'id_article' :rec.name,
-            'quantite' :rec.qte,
-            # 'article':rec.article,
+    # def action_update_quantity(self):
+    #     for rec in self:
+    #         vals ={
+    #         'id_article' :rec.name,
+    #         'quantite' :rec.qte,
+    #         # 'article':rec.article,
             
-            }
+    #         }
         
-        bon_rec =rec.env['inventaire.gestion__inventaire'].create(vals)
-        print ("Inventaire",bon_rec.id)
+    #     bon_rec =rec.env['inventaire.gestion__inventaire'].create(vals)
+    #     print ("Inventaire",bon_rec.id)
         
-        return{
-            'name':'Inventaire',
-            'type':'ir.actions.act_window',
-            'view_mode':'form',
-            'res_model':'inventaire.gestion__inventaire',
-            'target':'current',
-            'res_id':bon_rec.id 
-        }
-        
+    #     return{
+    #         'name':'Inventaire',
+    #         'type':'ir.actions.act_window',
+    #         'view_mode':'form',
+    #         'res_model':'inventaire.gestion__inventaire',
+    #         'target':'current',
+    #         'res_id':bon_rec.id 
+    #     }
+ 
+    # @api.depends('qti')
+    # def _compute_qty(self):
+    #     for rec in self:
+    #         qtotals = 0
+    #         for poids in rec.qti:
+    #             if rec.name == poids.id_article:
+    #                  qtotals = poids.quantite
+    #         rec.qte = qtotals
         
 
     # @api.depends('quantite')

@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_article_gestion__inventaire,access.article.gestion__inventaire,model_article_gestion__inventaire,,1,1,1,1
+access_reception_gestion__inventaire,access.reception.gestion__inventaire,model_reception_gestion__inventaire,,1,1,1,1
+access_bn_entrer,access.bn.entrer,model_bn_entrer,,1,1,1,1
+access_bon_entrer,access.bon.entrer,model_bon_entrer,,1,1,1,1
+access_reception_article,access.reception.article,model_reception_article,,1,1,1,1
+access_article_entrer,access.article.entrer,model_article_entrer,,1,1,1,1

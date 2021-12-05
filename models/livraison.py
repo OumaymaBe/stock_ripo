@@ -40,12 +40,12 @@ class livraison(models.Model):
     def action_anuuler(self):
         for rec in self:
             rec.state = 'refus'
-    @api.depends('article')
-    def add_art(self):
-        for rec in self:
-            for art in rec.article:
+    # @api.depends('article')
+    # def add_art(self):
+    #     for rec in self:
+    #         for art in rec.article:
                 # self.write({art.poids_net:(6, 0, [1,2])}) 
-                art.poids_net = (6, 0, [1,2])
+                # art.poids_net = (6, 0, [1,2])
             # rec.article=[(1 ,atrs ,{} )]
         # self.write({"article":[(5 ,4 ,5 )]})        
 

@@ -46,5 +46,5 @@
           </tree>
       </field>
   </record>
-  <menuitem id="menu_list_inventaire_view" name="Inventaire" parent="article_menu_article" action="action_inventaire_view"/> 
+  <!-- <menuitem id="menu_list_inventaire_view" name="Inventaire" parent="article_menu_article" action="action_inventaire_view"/>  -->
 </odoo>

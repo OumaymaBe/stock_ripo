@@ -7,7 +7,7 @@
         <form string="livraison">
             <header>
                 
-                <button string="ajouter" name="add_art"  type="object" class="oe_highlight"/>
+                <!-- <button string="ajouter" name="add_art"  type="object" class="oe_highlight"/> -->
                 <button string="Entrer" name="action_star" states="draft" type="object" class="oe_highlight"/>
                 <button string="Reception" states="inprogress" name="action_trem" type="object" class="oe_highlight"/>
                 <button string="Annuler" states="inprogress" name="action_anuuler" type="object"/>

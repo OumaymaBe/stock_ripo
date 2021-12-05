@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_article_entrer_form" model="ir.ui.view">
+      <field name="name">view.article.entrer.form</field>
+      <field name="model">reception.article</field>
+      <field name="arch" type="xml">
+        <form string="Quantité">
+        
+          <sheet>
+                <group>
+                    
+                    <field name="article"/>
+                    <field name="nbr_colis"/>
+                    <field name="poids_brut"/>
+                    <field name="poids_net"/>
+                </group>
+          </sheet>
+        </form>
+      </field>
+  </record> 
+  
+ 
+  <record model="ir.actions.act_window" id="action_article_entrer_view">
+      <field name="name">Quantité</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">article.entrer</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Cliquez ici pour créer un nouveau reception.
+          </p>
+      </field>
+  </record>
+  <record id="view_article_entrer_tree" model="ir.ui.view">
+      <field name="name">view.article.tree</field>
+      <field name="model">article.entrer</field>
+      <field name="arch" type="xml">
+          <tree string="Quantité">
+                <field name="article"/>
+                <field name="nbr_colis"/>
+                <field name="poids_brut"/>
+                <field name="poids_net"/>
+          </tree>
+      </field>
+  </record>
+
+  <!-- <menuitem id="menu_list_view" name="art" parent="inventaire_menu_inventaire" action="action_article_entrer_view" sequence="3"/>  -->
+</odoo>

@@ -13,33 +13,26 @@ class reception(models.Model):
                        readonly=True,
                        index=True,
                        default='New')
-    origine = fields.Char(string='Origine   ',required=True)
+    origine = fields.Char(string='Origine   ')
     fournisseur = fields.Many2one(
         'res.partner', 'Fournisseur',
-        ondelete='cascade', required=True)
-    matricule = fields.Char(string='Matricule véhicule   ',required=True)
-    chauffeur = fields.Char(string='Nom du chauffeur   ',required=True)
-    cin = fields.Char(string='N° CIN   ',required=True)
-    date = fields.Date(string='Date', default=datetime.today(),readonly=True)
+        ondelete='cascade')
+    matricule = fields.Char(string='Matricule véhicule   ')
+    chauffeur = fields.Char(string='Nom du chauffeur   ')
+    cin = fields.Char(string='N° CIN   ')
+    date = fields.Date(string='Date', default=datetime.today())
     acheteur = fields.Many2one(
         'res.partner', 'Acheteur',
-        ondelete='cascade', required=True)
-    beneficiaire = fields.Char(string='Bénéficiaire   ',required=True)
-    etat_art = fields.Char(string='Etat du produit   ',required=True)
-    date_marree = fields.Date(string='Date marrée   ',required=True)
-    article = fields.Many2many('article.gestion__inventaire', string='Article')
+        ondelete='cascade')
+    beneficiaire = fields.Char(string='Bénéficiaire   ')
+    etat_art = fields.Char(string='Etat du produit   ')
+    date_marree = fields.Date(string='Date marrée   ')
+    # nbr_colis = fields.Float(string="Nombre colis    ")
+    # poids_brut = fields.Float(string="Poids brut/kg    ")
+    # poids_net = fields.Float(string="Poids net/kg    ")
+    article=fields.Many2many('reception.article',string='Article')
+    # article = fields.Many2many('article.gestion__inventaire', string='Article')
     observation =fields.Html(string='Observation   ')
-    # article = fields.Many2one('article.gestion__inventaire', string='Article')
-
-    # responsable = fields.Char(string='Responsable   ',required=True)
-    # quantite_demander = fields.Char(string='Quantité demander   ')
-    # date_prevue = fields.Date(string='Date prévue   ')
-    # fournisseur = fields.Char(string='Fournisseur   ')
-    # # article = fields.Char(string='Article   ')
-
-    # emplacement = fields.Char(string='Emplacement   ')
-    # qtefinal = fields.Char(string='Quantité Final   ')
-
     state = fields.Selection([('draft', 'Reception'),
                             ('inprogress', 'Entrer'),
                             # ('done', 'Terminé'),
@@ -48,10 +41,8 @@ class reception(models.Model):
                             , default="draft"
                             , string='state')
 
-    total = fields.Float(string='Total' , compute="_compute_total")
-    # article_id = fields.One2many(
-    #     'article.gestion__inventaire', 'name', string="Article")
-    # count = fields.Integer(compute='count_article')
+    # total = fields.Float(string='Total net' , compute="_compute_total")
+    # total_br = fields.Float(string='Total brut' , compute="_compute_total_br")
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
@@ -59,6 +50,23 @@ class reception(models.Model):
                 'reception.gestion__inventaire.sequence') or 'New'
         result = super(reception, self).create(vals)
         return result
+    # @api.depends('article')
+    # def _compute_total(self):
+    #     for rec in self:
+    #         totals = 0
+    #         for poids in rec.article:
+    #             totals += poids.poids_net
+    #         rec.total = totals
+    
+    # @api.depends('article')
+    # def _compute_total_br(self):
+    #     for rec in self:
+    #         totals = 0
+    #         for poids in rec.article:
+    #             totals += poids.poids_brut
+    #         rec.total_br = totals
+            
+    
 
     def action_star(self):
         for rec in self:
@@ -82,16 +90,12 @@ class reception(models.Model):
         }
         return self.env.ref('gestion__inventaire.print_reception').report_action(self, data=data) 
 
+
+
     # def default_get(self):
     #     arts=[(11)]
     #     self.write({"article":[(11,0,0,0,0,0,0,0,0,0,0,0,arts)]})         
-    @api.depends('article')
-    def _compute_total(self):
-        for rec in self:
-            totals = 0
-            for poids in rec.article:
-                totals += poids.poids_net
-            rec.total = totals
+   
    
         # bn = self.env["bn.entrer"]
         # for o in self:
@@ -117,26 +121,26 @@ class reception(models.Model):
             #  def action_create_bon_entrer(self):
         # bon_rec =self.env['bn.entrer'].create(vals)
         # print ("Bon entrer",bon_rec.id)
-    def creat_bn(self):
-        # self.state = 'inprogress'
-        for rec in self:
-            vals ={
-            'num' :rec.name,
-            'date':rec.date,
-            # 'article':rec.article,
-        }
-        bon_rec =rec.env['bn.entrer'].create(vals)
-        print ("Bon entrer",bon_rec.id)
-        # rec.state = 'inprogress',
-        # self.state = 'inprogress',
-        return{
-            'name':'bonEntrer',
-            'type':'ir.actions.act_window',
-            'view_mode':'form',
-            'res_model':'bn.entrer',
-            'target':'current',
-            'res_id':bon_rec.id 
-        }
+    # def creat_bn(self):
+    #     # self.state = 'inprogress'
+    #     for rec in self:
+    #         vals ={
+    #         'name' :rec.name,
+    #         # 'date':rec.date,
+    #         # 'article':rec.article,
+    #     }
+    #     bon_rec =rec.env['bon.entrer'].create(vals)
+    # #     print ("Bon entrer",bon_rec.id)
+    # #     # rec.state = 'inprogress',
+    # #     # self.state = 'inprogress',
+    #     return{
+    #         'name':'bonEntrer',
+    #         'type':'ir.actions.act_window',
+    #         'view_mode':'form',
+    #         'res_model':'bon.entrer',
+    #         'target':'current',
+    #         'res_id':bon_rec.id 
+    #     }
         
     # @api.depends('article')
     # def count_article(self):

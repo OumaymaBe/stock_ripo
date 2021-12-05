@@ -6,10 +6,9 @@
       <field name="arch" type="xml">
         <form string="reception">
           <header>
-            <button string="valider" name="%(gestion__inventaire.action_wizard_view)d"  type="action" class="oe_highlight"/>
-            <!-- <button string="tst" name="default_get" type="object" class="oe_highlight"/> -->
+            <button string="valider" name="%(gestion__inventaire.action_wizard_view)d"  type="action" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ['draft'])]}" context="{'default_reception_id':active_id }"/>
             <!-- <button string="Entrer" states="inprogress" name="action_trem" type="object" class="oe_highlight"/> -->
-            <button string="Rejeter" states="inprogress" name="action_anuuler" type="object" attrs="{'invisible': [('state', 'not in', [ 'draft'])]}"/>
+            <button string="Rejeter" states="refus" name="action_anuuler" type="object" attrs="{'invisible': [('state', 'in', [ 'inprogress'])]}"/>
             <!-- <button string="Rejeter" name="action_broui" type="object" attrs="{'invisible': [('state', 'not in', [ 'draft'])]}"/> -->
             <field name="state" widget="statusbar" statusbar_visible="draft,inprogress,done,refus"/>
           </header>
@@ -42,15 +41,16 @@
                         <field name="observation"/>
                     </group>
                 </page>
-                <page string="Article" name="article">
-                    <group>
-                        <field name="article"/>
-                        <field name="total"/>
-                        <!-- <field name="count"/> -->
-                        
-                        
-                    </group>
-                </page>
+            
+                        <!-- <field name="article" /> -->
+                        <!-- <field name="nbr_colis"/>
+                        <field name="poids_brut"/>
+                        <field name="poids_net"/> -->
+                        <!-- <field name="total"/>
+                        <field name="total_br"/> -->
+                        <page string="Article" name="article">
+                            <field name="article"/>
+                        </page>    
             </notebook>
           </sheet>
         </form>

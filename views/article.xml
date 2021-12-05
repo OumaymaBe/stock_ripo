@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <graph string="Article graph" type="bar">
                 <field name="name" placeholder="référence"/>
-                <field name="poids_net"/>
             </graph>
         </field>
     </record>
@@ -16,15 +15,10 @@
       <field name="arch" type="xml">
         <form string="article">
           <sheet>
-            <header>
-                <button string="Update Quantity" type="object"
-                    name="action_update_quantity"/>
-            </header>
             <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
             <div class="oe_title">
                 <label class="oe_edit_only" for="name" string=""/>
                 <h1><field name="name" placeholder="référence"/></h1>
-                <!-- <field name="name"/> --> 
             </div>
             <notebook>
                 <page string="General Information" name="general_information">
@@ -34,12 +28,7 @@
                             <field name="nature"/>
                         </group>
                         <group>
-                                <field name="responsible_id" widget="many2one_avatar_user"/>
-                                <field name="nbr_colis"/>
-                                <field name="poids_brut"/>
-                                <field name="poids_net"/>
-                                <field name="qte"/>
-                            
+                                <field name="responsible_id" widget="many2one_avatar_user"/>                            
                         </group>
                         <group string="Internal Notes">
                             <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
@@ -57,8 +46,6 @@
       <field name="active">TRUE</field>
       <field name="prefix">Art</field>
       <field name="padding">5</field>
-      <!-- <field name="number_next">1</field>
-      <field name="number_increment">1</field> -->
   </record>
   <record model="ir.actions.act_window" id="action_article_view">
       <field name="name">article</field>
@@ -77,12 +64,7 @@
       <field name="arch" type="xml">
           <tree string="article">
             <field name="name"/>
-            <!-- <field name="des"/> -->
             <field name="nature"/>
-            <field name="nbr_colis"/>
-            <field name="poids_brut"/>
-            <field name="poids_net"/>
-            <field name="qte"/>
           </tree>
       </field>
   </record>
